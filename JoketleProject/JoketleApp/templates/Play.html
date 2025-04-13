@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="../static/css/playTemplate.css">
+    <div id="playContainer">
+        <div id="Result">
+            <div id="JimboContainer">
+                <img id="Jimbo" src="../static/images/Jimbo.webp" alt="Jimbo">
+                <p id="JimboText"></p>
+            </div>
+            <div id="resultCard">
+                <h1 id="Victory">You Win!</h1>
+            <p id="resultText"> </p>
+                <img id="ChosenImage" alt ="ChosenJoker">>
+            <p id="NewGame"> New Game</p>
+        </div>
+        </div>
+        <ul id="autocomplete"></ul> </hr>  
+        <div id="searchContainer">
+        <div id="NumberContainer"> 
+      <input type="text" id="guessInput" autocomplete="off" placeholder="Enter your guess here...">
+      <p id="guessAmount">Guess Amount: 0</p>
+        </div>
+        <div id="WrongGuess">
+            </div>  
+        </div>
+       
+    </div>
+
+    <script src="../static/js/PlayScript.js"></script>
+{% endblock %}

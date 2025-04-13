@@ -1,0 +1,122 @@
+body{
+    margin: 0;
+}
+#NavBar {
+ background-color: rgb(40, 40, 57);
+ display: flex;
+ width: 100vw;
+ height: 20vh;
+ align-items: center;
+ user-select: none;
+ border-bottom: 0.5rem rgb(249, 239, 100) solid;
+}
+#Logo {
+    width: 15vw;
+    height: 15vh;
+    margin-left: 2vw;
+}
+
+#NavBar a {
+    background-image: url("../images/BackgroundButtons.png");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    margin-left: 2vw;
+    font-size: xx-large;       
+    color: white;
+    font-family: "PixelPurl", sans-serif;
+    border-radius: 1rem;
+    transition: 0.5s;
+}
+#NavBar a p {
+    text-shadow: 0 0.5vh 0.5rem  black;
+}
+
+#Play {
+    width: 10vw;
+    background-color: rgb(63, 156, 233);
+}
+
+#Login {
+    justify-self: flex-end;
+    width: 10vw;
+    margin-left: auto;
+    margin-right: 3vw;
+    filter: hue-rotate(315deg);
+}
+#Register {
+    justify-self: flex-end;
+    width: 13vw;
+    margin-left: auto;
+    background-color: rgb(83, 233, 63);
+
+}
+
+#Leaderboards {
+    justify-self: flex-end;
+    width: 20vw;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(123, 0, 255);
+
+}
+
+#Settings {
+    width: 13vw;
+    background-color: rgb(228, 156, 24);
+
+}
+#NavBar a:hover {
+
+    border-radius: 2rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: 1s;
+    box-shadow: 0 0 1vw gold;
+
+}
+
+#Background {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+#Background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../images/background.gif");
+    background-size: cover;
+    background-position: center;
+
+    animation: BackgroundColorShift 100s linear infinite;
+    z-index: 1;
+}
+#Background > * {
+    position: relative;
+    z-index: 2;
+}
+@font-face {
+    font-family: "PixelPurl";
+    src: url(../fonts/PixelPurl.ttf);
+  }
+  
+@keyframes BackgroundColorShift {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+    
+}

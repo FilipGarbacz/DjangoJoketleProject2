@@ -1,0 +1,288 @@
+* {
+    font-family: PixelPurl, sans-serif;
+}
+#playContainer {
+    display: flex;
+    
+    width: 100vw;
+    justify-content: center;
+    height: 100vh;
+}
+#guessInput {
+    padding: 1rem;
+    border-radius: 2rem;
+    justify-self: center;
+    align-self: center;
+    font-size: xx-large;
+    background-image: url("../images/BackgroundButtons.png");
+    background-position: center;
+    background-repeat: repeat;
+    filter: grayscale(1);
+    width: 20vw;
+    height: 15vh; 
+    margin: 1rem;
+}
+#Result {
+    display: none;
+    position: absolute;
+    align-content: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 98;
+}
+#resultText {
+    background-color: rgb(146, 153, 159);
+    justify-self: center;
+    position: absolute;
+    top: 30%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    font-size: xx-large;
+    border-radius: 2rem;
+    background-position: center;
+    background-repeat: repeat;
+    filter: grayscale(1);
+    width: 27vw;
+    height: 15vh; 
+    margin: 1rem;
+    z-index: 99;
+    color: white;
+}
+.Visible {
+    display: flex;
+}
+#resultCard {
+    background-color: rgb(40, 40, 57);
+    border: 0.5rem solid rgb(249, 239, 100);
+    border-radius: 2rem;
+    top: 40%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+    position: absolute;
+    width: 30vw;
+    height: 35vw;
+    z-index: 99;
+}
+#Victory {
+    color: rgb(249, 239, 100);
+    font-size: 6rem;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    letter-spacing: 0.5rem;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    height: 30vw;
+    z-index: 99;
+}
+#Jimbo {
+    border: 0.5rem solid rgb(249, 239, 100);
+    border-radius: 1rem;
+    transform-origin: center;
+    will-change: transform;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    z-index: 99;
+    cursor:not-allowed;
+}
+#JimboText {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 45%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: gray 0.3rem solid;
+    border-radius: 2rem;
+    width: 17vw;
+    height: 7vh;
+    font-size: 1.4rem;
+    z-index: 99;
+}
+#NewGame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 31, 19);
+    border-radius: 2rem;
+    position: absolute;
+    top: 77%;
+    left: 33%;
+    font-size: 2rem;
+    color: white;
+    justify-self: center;
+    align-self: center;
+    width: 10vw;
+    height: 10vh;
+    z-index: 99;
+}
+#NewGame:hover {
+    background-color: rgb(139, 10, 3);
+    cursor: pointer;
+    box-shadow: 0 0 1vw gold;
+    transition: 0.5s linear;
+}
+#ChosenImage {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 63%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: black 0.3rem solid;
+    border-radius: 1rem;
+    width: 142px;
+    height: 190px;
+    z-index: 99;
+}
+
+.Bump {
+    animation: Bump 0.5s ease-in-out;
+    animation-iteration-count: one;
+}
+.WrongAnswer {
+    animation: WrongAnswer 0.5s ease-in-out;
+    animation-iteration-count: one;
+
+}
+#autocomplete {
+    align-items: start;
+    list-style: none;
+    display: none;
+    position: relative;
+    height: 70vh;
+    overflow-y: scroll;
+    background-color: rgb(40, 40, 57);
+    border-radius: 1rem;
+    border: 0.3rem solid rgb(249, 239, 100);
+    flex-direction: column;
+    padding: 0.5rem;
+}
+#autocomplete > * {
+    background-image: url("../images/BackgroundButtons.png");
+    background-position: center;
+    background-repeat: repeat;
+    margin: 1rem 0 0 0;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    filter: grayscale(1);
+    color: white;
+    font-size: xx-large;
+}
+
+#autocomplete::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 1rem;
+}
+
+#autocomplete::-webkit-scrollbar-track {
+    border-radius: 1rem;
+    background-color: rgb(40, 40, 57);
+}
+
+#autocomplete::-webkit-scrollbar-thumb {
+    background-color: rgb(249, 239, 100);
+    border-radius: 1rem;
+}
+
+#WrongGuess {
+    width: fit-content;
+    height: 50vh;
+    justify-self: center;
+    font-size: xx-large;
+    overflow-y: scroll;
+
+}
+#WrongGuess::-webkit-scrollbar {
+    display: none;
+}
+#WrongGuess > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(40, 40, 57);
+    border-radius: 1rem;
+    border: 0.3rem solid rgb(249, 239, 100);
+    width: fit-content;
+    height: 15vh; 
+    margin: 1rem;
+    color: white;
+}
+#WrongGuess > div > p {
+    color: white;
+    font-size: xx-large;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+#searchContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+}
+#guessAmount{
+    color: white;
+    font-size: 3rem;
+}
+
+#NumberContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes Bump {
+    0% {
+        transform: rotate(0deg) scale(1,1);
+ 
+    }
+    50% {
+        transform: rotate(20deg) scale(1.1,1.1);
+    }
+    75% {
+        transform: rotate(-20deg) scale(1.1,1.1);
+    }
+    100% {
+        transform: rotate(0deg) scale(1,1);
+    }
+    
+}
+@keyframes WrongAnswer {
+    0% {
+        filter: hue-rotate(310deg) grayscale(1);
+        transform: rotate(0deg) scale(1,1);
+    }
+    50% {
+        filter: hue-rotate(310deg) grayscale(0);
+        transform: rotate(20deg) scale(1.1,1.1);
+    }
+    75% {
+        filter: hue-rotate(310deg) grayscale(0);
+        transform: rotate(-20deg) scale(1.1,1.1);
+    }
+    100% {
+        filter: hue-rotate(310deg) grayscale(1);
+        transform: rotate(0deg) scale(1,1);
+    }
+    }
+
+@font-face {
+    font-family: "PixelPurl";
+    src: url(../fonts/PixelPurl.ttf);
+}
