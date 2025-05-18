@@ -1,0 +1,89 @@
+#JokerList {
+    width: 25vw;
+    height: 80vh;
+    overflow-y: auto;
+    padding-left: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+}
+
+.jokerListItem {
+    font-family: pixelPurl, sans-serif;
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px;
+    width: 70%;
+    background-color: rgb(40, 40, 57);
+    border: 0.5rem rgb(249, 239, 100) solid;
+    border-radius: 1rem;
+}
+
+.jokerListItem > * {
+    margin: 0.2rem;
+    padding: 0;
+}
+
+#homeTextContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100vw;
+    height: 100vh; 
+    color: white;
+    padding: 1rem; 
+    box-sizing: border-box;
+}
+
+#Rules {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 70vw;
+    height: 80vh;
+    font-family: pixelPurl, sans-serif;
+    font-size: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+
+}
+
+#colorKey > * {
+    border: 0.2rem rgb(249, 239, 100) solid;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    min-width: 20%;
+    text-align: center;
+    
+}
+#colorKey {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    min-width: 20vw;
+    height: 10vh;
+    padding: 1rem;
+    background-color: rgb(40, 40, 57);
+    border-radius: 1rem;}
+
+#colorKey > div:nth-child(1) {
+    background-color: rgb(89, 210, 13);
+}
+
+#colorKey > div:nth-child(2) {
+    background-color: rgb(255, 200, 0);
+}
+
+#colorKey > div:nth-child(3) {
+    background-color: red;
+}

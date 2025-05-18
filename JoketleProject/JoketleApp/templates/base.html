@@ -15,11 +15,12 @@
 <body>
     <div id="Background">
     <nav id="NavBar">
+        <a id="Home" href="{% url 'home' %}"> 
         <img src="../static/images/Logo.png" alt="Balatro Logo" id="Logo">
-        <a id="Play"> <p> Play </p> </a>
+        </a>
+        <a id="Play" href="{% url 'play' %}"> <p> Play </p> </a>
         <a id="Leaderboards"> <p> Leaderboards </p> </a>
-
-        <a id="Settings"> <p> Settings </p> </a>
+        
         <a id="Register"> <p> Register </p> </a>
         <a id="Login"> <p> Login </p> </a>
     </nav>    

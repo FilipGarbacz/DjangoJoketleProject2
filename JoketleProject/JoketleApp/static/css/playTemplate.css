@@ -38,6 +38,7 @@
     position: absolute;
     top: 30%;
     left: 47%;
+    padding: 0.5rem;
     transform: translate(-50%, -50%);
     font-size: xx-large;
     border-radius: 2rem;
@@ -218,6 +219,7 @@
     border: 0.3rem solid rgb(249, 239, 100);
     width: fit-content;
     height: 15vh; 
+    width: 80%  ;
     margin: 1rem;
     color: white;
 }
@@ -245,6 +247,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.Right{
+    background-color: greenyellow;
+    background-image: url("../images/BackgroundButtons.png");
+    filter: hue-rotate(60deg);
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+.Wrong{
+    background-image: url("../images/BackgroundButtons.png");
+    filter: hue-rotate(310deg);
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+.Close{
+    background-image: url("../images/BackgroundButtons.png");
+    padding: 0.5rem;
+    border-radius: 1rem;
 }
 
 @keyframes Bump {
@@ -286,3 +307,5 @@
     font-family: "PixelPurl";
     src: url(../fonts/PixelPurl.ttf);
 }
+
+

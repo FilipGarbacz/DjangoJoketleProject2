@@ -1,4 +1,4 @@
-const jokersData = [
+let jokersData = [
     { name: 'Joker', cost: 2, rarity: 'Common', unlock_start: true, type: '+m', activate: 'Indep.' },
     { name: 'Greedy Joker', cost: 5, rarity: 'Common', unlock_start: true, type: '+m', activate: 'On Scored' },
     { name: 'Lusty Joker', cost: 5, rarity: 'Common', unlock_start: true, type: '+m', activate: 'On Scored' },
@@ -150,238 +150,24 @@ const jokersData = [
     { name: 'Chicot', cost: null, rarity: 'Legendary', unlock_start: true, type: '!!', activate: 'N/A' },
     { name: 'Perkeo', cost: null, rarity: 'Legendary', unlock_start: true, type: '!!', activate: 'N/A' }
 ];
-const JimboWinMessage = [
-    "You Aced it!",
-    "You dealt with that pretty well!",
-    "Looks like you weren't bluffing!",
-    "Too bad these chips are all virtual...",
-    "Looks like I've taught you well!",
-    "You made some heads up plays!",
-    "Good thing I didn't bet against you!"
-]
-const JimboLoseMessage = [
-    "Maybe Go Fish is more our speed...",
-    "We folded like a cheap suit!",
-    "Time for us to shuffle off and try again!",
-    "You know what they say, the house always wins!",
-    "Looks like we found out who the real Joker is!",
-    "Oh no, were you bluffing too?",
-    "Looks like the joke's on us!",
-    "If I had hands I would have covered my eyes!",
-    "I'm literally a fool, what's your excuse?",
-    "What a flop!"
-];
-const jokerNames = jokersData.map(joker => joker.name.toLowerCase());
-let randJoker = Math.floor(Math.random() * jokersData.length);
-let joker = jokersData[randJoker];
-let GuessInput = document.getElementById("guessInput");
-let GuessAmountText = document.getElementById("guessAmount");
-let ResultScreen = document.getElementById("Result");
-let ResultText = document.getElementById("resultText");
-let JimboMessage = document.getElementById("JimboText");
-let Jimbo = document.getElementById("Jimbo");
-let JokerImage = document.getElementById("ChosenImage");
-let NewGame = document.getElementById("NewGame");
-let Autocomplete = document.getElementById("autocomplete");
-let WrongGuess = document.getElementById("WrongGuess");
-let JokerFileName = joker.name.replace(/ /g,"_");
-let GuessAmount = 0;
-let GuessLimit = 10;
-let guessedJokers = [];
 
-GuessInput.addEventListener("keypress", function (event) {
- if(event.key === "Enter") {
-    HandleGuess();
- }
-});
+let JokerList = document.getElementById("JokerList");
 
-console.log(joker.name);
-console.log(joker.cost);
-NewGame.addEventListener("click", () => {
-  window.location.reload();
-});
-window.addEventListener("mousemove", event => {
-    const rect = Jimbo.getBoundingClientRect();
-    const JimboX = rect.left + rect.width / 2;
-    const JimboY = rect.top + rect.height / 2;
-
-    const clientX = event.clientX;
-    const clientY = event.clientY;
-
-    const deltaX = clientX - JimboX;
-    const deltaY = clientY - JimboY;
-  
-    Jimbo.style.transform = `rotateY(${-deltaX / 13}deg) rotateX(${deltaY / 10 }deg)`;});
-
-let isTyping = false; 
-
-GuessInput.addEventListener("input", updateAutocomplete);
-    
-function updateAutocomplete(){
- let guessInputValue = GuessInput.value;
- console.log(guessInputValue);
- Autocomplete.innerHTML = "";
-    showAutocomplete(guessInputValue);
-}
-
-function showAutocomplete(guessInputValue) {
-    if (guessInputValue.length > 0) {
-        let filteredJokers = jokersData.filter(filterJokers =>
-            filterJokers.name.toLowerCase().includes(guessInputValue.toLowerCase())
-        );
-
-        if (filteredJokers.length > 0) {
-            Autocomplete.style.display = "flex";
-            filteredJokers.forEach(joker => {
-                let listItem = document.createElement("li");
-                listItem.textContent = joker.name;
-                Autocomplete.appendChild(listItem);
-
-                listItem.addEventListener("click", () => {
-                    GuessInput.value = joker.name;
-                    Autocomplete.innerHTML = "";
-                    GuessInput.focus();
-                    Autocomplete.style.display = "none";
-                });
-            });
-        }
-        else {
-            Autocomplete.style.display = "none";
-        }
-    } else {
-        Autocomplete.style.display = "none";
-    }
-}
+for (let i = 0; i < jokersData.length; i++) {
+    let joker = jokersData[i];
+    let JokerFileName = joker.name.replace(/ /g,"_");
+    let jokerDiv = document.createElement("div");
+    jokerDiv.className = "jokerListItem";
+    jokerDiv.innerHTML = `
+    <img src="../static/images/Jokers/${JokerFileName}.png" alt="${joker.name}">
+    <h3>${joker.name}</h3>
+    <p>Cost: ${joker.cost}</p>
+    <p>Rarity: ${joker.rarity}</p>
+    <p>Unlock: ${joker.unlock_start ? "Yes" : "No"}</p>
+    <p>Type: ${joker.type}</p>
+    <p>Activate: ${joker.activate}</p>
+`;
 
 
-function typewriter(text) {
-    if (isTyping) return; 
-    isTyping = true; 
-
-    JimboMessage.innerHTML = ""; 
-    let i = 0;
-    let speed = 50;
-
-    function type() {
-        if (i < text.length) {
-            JimboMessage.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        } else {
-            isTyping = false; 
-        }
-    }
-    type();
-}
-
-Jimbo.addEventListener("click", () => {
-    Jimbo.classList.add("Bump");
-    Jimbo.addEventListener("animationend", () => Jimbo.classList.remove("Bump"));
-    typewriter("Ts pmo cro icl ong n shi fr yu pmo ngl r u fr vroski 💔💔💔");
-});
-
-function HandleGuess() {
-    if ((jokerNames.includes(GuessInput.value.toLowerCase())) && !(guessedJokers.includes(GuessInput.value.toLowerCase()))) {
-     if (GuessInput.value.toLowerCase() === joker.name.toLowerCase()) {
-        LoadResultScreen(true);
-     }
-        else if (GuessAmount >= GuessLimit) {
-            LoadResultScreen(false);
-        }
-
-     else {
-        inputJoker = jokersData.find(joker => joker.name.toLowerCase() === GuessInput.value.toLowerCase());
-        GuessAmount++;
-         console.log("Incorrect! Try again.");
-         GuessInput.classList.add("WrongAnswer");
-         GuessInput.addEventListener("animationend", () => GuessInput.classList.remove("WrongAnswer"));
-         let JokerInfoContainer = document.createElement("div");
-         WrongGuess.appendChild(JokerInfoContainer);
-        GuessAmountText.innerHTML = "Guess Amount: " + GuessAmount;
-
-         let JokerName = document.createElement("p");
-         let JokerCost = document.createElement("p");
-         let JokerRarity = document.createElement("p");
-         let JokerUnlock = document.createElement("p");
-         let JokerType = document.createElement("p");
-         let JokerActivate = document.createElement("p");
-
-         JokerName.innerHTML = "Name: " + inputJoker.name;  
-         JokerCost.innerHTML = "Cost: " + inputJoker.cost;  
-         JokerRarity.innerHTML = "Rarity: " + inputJoker.rarity;
-         JokerUnlock.innerHTML = "Unlocked From Start: " + inputJoker.unlock_start;
-         JokerType.innerHTML = "Type: " + inputJoker.type;
-         JokerActivate.innerHTML = "Activate: " + inputJoker.activate;
-
-         if (inputJoker.cost === null) {
-            JokerCost.innerHTML = "Cost: N/A";
-         }
-        const properties = ["name","cost", "rarity", "unlock_start", "type", "activate"];
-        const elements = [JokerName, JokerCost, JokerRarity, JokerUnlock, JokerType, JokerActivate];
-
-        properties.forEach((property, index) => {
-            if (inputJoker[property] === joker[property]) {
-                elements[index].classList.remove("Wrong");
-                elements[index].classList.add("Right");
-            } 
-            else {
-                elements[index].classList.remove("Right");
-                elements[index].classList.add("Wrong");
-            }
-            if (properties[index] === "cost" && (inputJoker.cost >= joker.cost - 2 && inputJoker.cost <= joker.cost + 2 && inputJoker.cost !== joker.cost)) {
-                elements[index].classList.remove("Wrong");
-                elements[index].classList.remove("Right");
-                elements[index].classList.add("Close");
-            }
-
-            if (properties[index] === "name" && inputJoker.name[0] === joker.name[0]) {
-                elements[index].classList.remove("Wrong");
-                elements[index].classList.remove("Right");
-                elements[index].classList.add("Close");
-            }
-        });
-            
-
-
-         JokerInfoContainer.appendChild(JokerName);
-         JokerInfoContainer.appendChild(JokerCost);
-         JokerInfoContainer.appendChild(JokerRarity);
-         JokerInfoContainer.appendChild(JokerUnlock);
-         JokerInfoContainer.appendChild(JokerType);
-         JokerInfoContainer.appendChild(JokerActivate);
-
-          guessedJokers.push(inputJoker.name.toLowerCase());
-        }
-
-        
-     }
-     else{
-        GuessInput.classList.add("WrongAnswer");
-        GuessInput.addEventListener("animationend", () => GuessInput.classList.remove("WrongAnswer"));
-        console.log("Not a valid Joker name");
-     }
-
-    
-    }
-function LoadResultScreen(resultBool) {
-    if (resultBool) {
-        let ChosenText = JimboWinMessage[Math.floor(Math.random() * JimboWinMessage.length)];
-        ResultScreen.style.display = "block";
-        document.getElementById("Victory").innerHTML = "You Win!";
-        ResultText.innerHTML = "<br> Correct! The Joker is: " + joker.name + "<br> Guess Amount: " + GuessAmount;
-        JokerImage.src = "../static/images/Jokers/" + JokerFileName + ".png";
-        console.log("Correct! The Joker is: " + joker.name);
-        typewriter(ChosenText)
-    }
-    else {
-        let ChosenText = JimboLoseMessage[Math.floor(Math.random() * JimboWinMessage.length)];
-        ResultScreen.style.display = "block";
-        document.getElementById("Victory").innerHTML = "You Lose!";
-        ResultText.innerHTML = "<br> Incorrect! The Joker was: " + joker.name;
-        JokerImage.src = "../static/images/Jokers/" + JokerFileName + ".png";
-        console.log("Incorrect! The Joker was: " + joker.name);
-        typewriter(ChosenText)
-    }
-
-
+    JokerList.appendChild(jokerDiv);
 }
