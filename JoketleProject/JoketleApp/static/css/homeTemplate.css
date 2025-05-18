@@ -53,6 +53,7 @@
     font-family: pixelPurl, sans-serif;
     font-size: 2rem;
     padding: 1rem;
+    padding-top: 0;
     border-radius: 1rem;
 
 }
@@ -87,3 +88,32 @@
 #colorKey > div:nth-child(3) {
     background-color: red;
 }
+#JokerList::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 1rem;
+}
+
+#JokerList::-webkit-scrollbar-track {
+    border-radius: 1rem;
+    background-color: rgb(40, 40, 57);
+}
+
+#JokerList::-webkit-scrollbar-thumb {
+    background-color: rgb(249, 239, 100);
+    border-radius: 1rem;
+}
+#Rules::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 1rem;
+}
+
+#Rules::-webkit-scrollbar-track {
+    border-radius: 1rem;
+    background-color: rgb(40, 40, 57);
+}
+
+#Rules::-webkit-scrollbar-thumb {
+    background-color: rgb(249, 239, 100);
+    border-radius: 1rem;
+}
+

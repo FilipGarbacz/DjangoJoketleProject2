@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <link rel="stylesheet" href="../static/css/leaderboardTemplate.css">
+
+    <div id="leaderboardContainer">
+        <h1>Leaderboard</h1>
+        <table id="leaderboardTable">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Time (s)</th>
+                    <th>Guesses</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in leaderboard %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ entry.username }}</td>
+                    <td>{{ entry.time }}</td>
+                    <td>{{ entry.guesses }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No entries yet!</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

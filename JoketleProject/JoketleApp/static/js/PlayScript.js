@@ -186,6 +186,7 @@ let Autocomplete = document.getElementById("autocomplete");
 let WrongGuess = document.getElementById("WrongGuess");
 let JokerFileName = joker.name.replace(/ /g,"_");
 let GuessAmount = 0;
+let startTime = null;
 let GuessLimit = 10;
 let guessedJokers = [];
 
@@ -281,9 +282,14 @@ Jimbo.addEventListener("click", () => {
 });
 
 function HandleGuess() {
+    if (!startTime) {
+        startTime = Date.now();
+    }
     if ((jokerNames.includes(GuessInput.value.toLowerCase())) && !(guessedJokers.includes(GuessInput.value.toLowerCase()))) {
      if (GuessInput.value.toLowerCase() === joker.name.toLowerCase()) {
+        const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
         LoadResultScreen(true);
+        saveLeaderboardEntry(elapsedTime, GuessAmount + 1); 
      }
         else if (GuessAmount >= GuessLimit) {
             LoadResultScreen(false);
@@ -384,4 +390,29 @@ function LoadResultScreen(resultBool) {
     }
 
 
+}
+function saveLeaderboardEntry(timeTaken, guesses) {
+    const csrfToken = document.querySelector('#csrfToken').value;
+
+    fetch('/save_leaderboard/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({
+            time_taken: timeTaken,
+            guesses: guesses
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Leaderboard entry saved successfully.');
+        } else {
+            console.error('Error saving leaderboard entry.');
+        }
+    })
+    .catch(error => {
+        console.error('Network error while saving leaderboard entry:', error);
+    });
 }

@@ -19,11 +19,20 @@
         <img src="../static/images/Logo.png" alt="Balatro Logo" id="Logo">
         </a>
         <a id="Play" href="{% url 'play' %}"> <p> Play </p> </a>
-        <a id="Leaderboards"> <p> Leaderboards </p> </a>
+        <a id="Leaderboards" href="{% url 'leaderboard' %}"> <p> Leaderboards </p> </a>
         
-        <a id="Register"> <p> Register </p> </a>
-        <a id="Login"> <p> Login </p> </a>
+        {% if user.is_authenticated %}
+        <form id="LogoutForm" method="post" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" id="Logout">Logout</button>
+        </form>
+    {% else %}
+        <a id="Register" href="{% url 'register' %}"> <p> Register </p> </a>
+        <a id="Login" href="{% url 'login' %}"> <p> Login </p> </a>
+    {% endif %}
     </nav>    
+
+    <input type="hidden" id="csrfToken" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         {% block content %}
         {% endblock %}
     </div>
